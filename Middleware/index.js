@@ -1,6 +1,6 @@
 const express = require("express");
 const readLastLines = require('read-last-lines');
-const port = 3000;
+const port = 4000;
 const app = express();
 
 let serverAStatus = false;
