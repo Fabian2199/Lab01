@@ -7,13 +7,15 @@ const app = express();
 let serverAStatus = false;
 let serverBStatus = false;
 let time='';
-
 setInterval(()=>{
 	exec(`sh watch.sh `, (error, stout, stderr) => {
 		if (error !== null) {
 			console.log(`exec error: ${error}`);
 		}
-	})
+	});
+},100)
+
+setInterval(()=>{
 	readLastLines.read('log.txt', 5).then((lines) => {
 		let data = lines.split('\n');
 		for (var i = 0; i < data.length; i++) {
