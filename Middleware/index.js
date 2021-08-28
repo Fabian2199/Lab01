@@ -1,4 +1,5 @@
 const express = require("express");
+const exec = require('child_process').exec;
 const readLastLines = require('read-last-lines');
 const port = 4000;
 const app = express();
@@ -8,6 +9,11 @@ let serverBStatus = false;
 let time='';
 
 setInterval(()=>{
+	exec(`sh watch.sh `, (error, stout, stderr) => {
+		if (error !== null) {
+			console.log(`exec error: ${error}`);
+		}
+	})
 	readLastLines.read('log.txt', 5).then((lines) => {
 		let data = lines.split('\n');
 		for (var i = 0; i < data.length; i++) {
